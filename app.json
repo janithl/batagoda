@@ -1,12 +1,6 @@
 {
-  "name": "Start on Heroku: Go",
-  "description": "Go Getting Started Example App",
-  "keywords": [
-    "getting-started",
-    "go",
-    "sample",
-    "example"
-  ],
-  "website": "http://github.com/heroku/go-getting-started",
-  "repository": "http://github.com/heroku/go-getting-started"
+  "name": "Batagoda",
+  "description": "To bot or not to bot",
+  "website": "http://github.com/janithl/batagoda",
+  "repository": "http://github.com/janithl/batagoda"
 }
