@@ -4,6 +4,7 @@ import (
 	"log"
 	"math/rand"
 	"os"
+	"time"
 
 	tb "gopkg.in/tucnak/telebot.v2"
 )
@@ -37,6 +38,7 @@ func main() {
 		"මොකද හුත්තො අනින්නෙ?",
 	}
 
+	rand.Seed(time.Now().Unix())
 	n := rand.Int() % len(greetings)
 	b.Handle("/start", func(m *tb.Message) {
 		b.Send(m.Sender, greetings[n])
