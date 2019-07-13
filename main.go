@@ -38,9 +38,9 @@ func main() {
 		"මොකද හුත්තො අනින්නෙ?",
 	}
 
-	rand.Seed(time.Now().Unix())
-	n := rand.Int() % len(greetings)
 	b.Handle("/start", func(m *tb.Message) {
+		rand.Seed(time.Now().Unix())
+		n := rand.Intn(len(greetings))
 		b.Send(m.Sender, greetings[n])
 	})
 
