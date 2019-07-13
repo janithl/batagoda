@@ -41,7 +41,7 @@ func main() {
 	b.Handle(tb.OnText, func(m *tb.Message) {
 		rand.Seed(time.Now().Unix())
 		n := rand.Intn(len(greetings))
-		b.Send(m.Sender, greetings[n])
+		b.Send(m.Chat, greetings[n])
 	})
 
 	b.Start()
