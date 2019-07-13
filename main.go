@@ -1,22 +1,37 @@
 package main
 
 import (
-	"fmt"
 	"log"
-	"net/http"
 	"os"
+
+	tb "gopkg.in/tucnak/telebot.v2"
 )
 
 func main() {
-	port := os.Getenv("PORT")
+	var (
+		port      = os.Getenv("PORT")
+		publicURL = os.Getenv("PUBLIC_URL")
+		token     = os.Getenv("TOKEN")
+	)
 
-	if port == "" {
-		log.Fatal("$PORT must be set")
+	webhook := &tb.Webhook{
+		Listen:   ":" + port,
+		Endpoint: &tb.WebhookEndpoint{PublicURL: publicURL},
 	}
 
-	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
-		fmt.Fprintf(w, "Welcome to Batagoda!")
+	pref := tb.Settings{
+		Token:  token,
+		Poller: webhook,
+	}
+
+	b, err := tb.NewBot(pref)
+	if err != nil {
+		log.Fatalln(err)
+	}
+
+	b.Handle("/start", func(m *tb.Message) {
+		b.Send(m.Sender, "Hi!")
 	})
 
-	http.ListenAndServe(":"+port, nil)
+	b.Start()
 }
