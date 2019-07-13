@@ -37,7 +37,8 @@ func main() {
 		rand.Seed(time.Now().Unix())
 		prompt := strings.ToLower(m.Text)
 		if strings.Contains(prompt, "බටගොඩ") || strings.Contains(prompt, "batagoda") {
-			prompt = strings.ReplaceAll(strings.ReplaceAll(prompt, "batagoda", ""), "බටගොඩ", "")
+			prompt = strings.TrimSpace(strings.ReplaceAll(
+				strings.ReplaceAll(prompt, "batagoda", ""), "බටගොඩ", ""))
 			b.Send(m.Chat, liz.ReplyTo(prompt))
 		}
 	})
