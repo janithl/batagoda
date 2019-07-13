@@ -50,7 +50,8 @@ func main() {
 	}
 
 	b.Handle(tb.OnText, func(m *tb.Message) {
-		if strings.Contains(strings.ToLower(m.Text), "batagoda") {
+		if strings.Contains(strings.ToLower(m.Text), "batagoda") ||
+			strings.Contains(strings.ToLower(m.Text), "බටගොඩ") {
 			b.Send(m.Chat, greet())
 		}
 	})
