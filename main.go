@@ -7,6 +7,7 @@ import (
 	"strings"
 	"time"
 
+	liz "github.com/kennysong/goeliza"
 	tb "gopkg.in/tucnak/telebot.v2"
 )
 
@@ -52,7 +53,8 @@ func main() {
 	b.Handle(tb.OnText, func(m *tb.Message) {
 		if strings.Contains(strings.ToLower(m.Text), "batagoda") ||
 			strings.Contains(strings.ToLower(m.Text), "බටගොඩ") {
-			b.Send(m.Chat, greet())
+			str := liz.ReplyTo(m.Text)
+			b.Send(m.Chat, str)
 		}
 	})
 
