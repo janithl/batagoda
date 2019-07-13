@@ -28,7 +28,11 @@ func ReplyTo(statement string) string {
 	// Next, we try to match the statement to a statement that ELIZA can
 	// recognize, and construct a pre-determined, appropriate response.
 	for pattern, responses := range Psychobabble {
-		re := regexp.MustCompile(pattern)
+		re, err := regexp.Compile(pattern)
+		if err != nil {
+			return Bye()
+		}
+
 		matches := re.FindStringSubmatch(statement)
 
 		// If the statement matched any recognizable statements.
