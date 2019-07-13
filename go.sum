@@ -1,5 +1,3 @@
-github.com/kennysong/goeliza v0.0.0-20160420092726-bdfccfe37f9c h1:s89TJyYVpfy2nojEfB1jofgigsMkocfrqEo3DEecBFA=
-github.com/kennysong/goeliza v0.0.0-20160420092726-bdfccfe37f9c/go.mod h1:gxpf70sPu78g8IPauVfLCiT7sgwo3hWf+QIdqRjDbyo=
 github.com/pkg/errors v0.8.1 h1:iURUrRGxPUNPdy5/HRSm+Yj6okJ6UtLINN0Q9M4+h3I=
 github.com/pkg/errors v0.8.1/go.mod h1:bwawxfHBFNV+L2hUp1rHADufV3IMtnDRdf1r5NINEl0=
 gopkg.in/tucnak/telebot.v2 v2.0.0-20190415090633-8c1c512262f2 h1:wGFU+pn16CuaCt4lc9gkdF1R/y4M8CRi4g6yj7pxpBE=
