@@ -36,9 +36,13 @@ func main() {
 		"ඇයි පකෝ?",
 		"තොට ඇම්ම කියල මම පලිද?",
 		"මොකද හුත්තො අනින්නෙ?",
+		"තොගෙ අඳෝනාව අහන් ඉඳල මට බඩ යනව",
+		"මේකට වඩා හොඳයි ඇට වල මවිල් ගනං කරන එක",
+		"ගිහිං වැලක් බලපංකො පව් නොදී",
+		"තොපිගෙ මුල් ලමාවිය ප්‍රශ්න තමයි පෙන්නන්නෙ",
 	}
 
-	b.Handle(tb.OnText, func(m *tb.Message) {
+	b.Handle("@BatagodaBot", func(m *tb.Message) {
 		rand.Seed(time.Now().Unix())
 		n := rand.Intn(len(greetings))
 		b.Send(m.Chat, greetings[n])
