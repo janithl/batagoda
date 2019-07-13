@@ -4,10 +4,28 @@ import (
 	"log"
 	"math/rand"
 	"os"
+	"strings"
 	"time"
 
 	tb "gopkg.in/tucnak/telebot.v2"
 )
+
+var greetings = []string{
+	"මීට කලින් මාව දැකල නැද්ද?",
+	"ඇයි පකෝ?",
+	"තොට ඇම්ම කියල මම පලිද?",
+	"මොකද හුත්තො අනින්නෙ?",
+	"තොගෙ අඳෝනාව අහන් ඉඳල මට බඩ යනව",
+	"මේකට වඩා හොඳයි ඇට වල මවිල් ගනං කරන එක",
+	"ගිහිං වැලක් බලපංකො පව් නොදී",
+	"තොපිගෙ මුල් ලමාවිය ප්‍රශ්න තමයි පෙන්නන්නෙ",
+}
+
+func greet() string {
+	rand.Seed(time.Now().Unix())
+	n := rand.Intn(len(greetings))
+	return greetings[n]
+}
 
 func main() {
 	var (
@@ -31,21 +49,10 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	greetings := []string{
-		"මීට කලින් මාව දැකල නැද්ද?",
-		"ඇයි පකෝ?",
-		"තොට ඇම්ම කියල මම පලිද?",
-		"මොකද හුත්තො අනින්නෙ?",
-		"තොගෙ අඳෝනාව අහන් ඉඳල මට බඩ යනව",
-		"මේකට වඩා හොඳයි ඇට වල මවිල් ගනං කරන එක",
-		"ගිහිං වැලක් බලපංකො පව් නොදී",
-		"තොපිගෙ මුල් ලමාවිය ප්‍රශ්න තමයි පෙන්නන්නෙ",
-	}
-
-	b.Handle("@BatagodaBot", func(m *tb.Message) {
-		rand.Seed(time.Now().Unix())
-		n := rand.Intn(len(greetings))
-		b.Send(m.Chat, greetings[n])
+	b.Handle(tb.OnText, func(m *tb.Message) {
+		if strings.Contains(strings.ToLower(m.Text), "batagoda") {
+			b.Send(m.Chat, greet())
+		}
 	})
 
 	b.Start()
