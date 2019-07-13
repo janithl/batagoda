@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"math/rand"
 	"os"
 
 	tb "gopkg.in/tucnak/telebot.v2"
@@ -29,8 +30,16 @@ func main() {
 		log.Fatalln(err)
 	}
 
+	greetings := []string{
+		"මීට කලින් මාව දැකල නැද්ද?",
+		"ඇයි පකෝ?",
+		"තොට ඇම්ම කියල මම පලිද?",
+		"මොකද හුත්තො අනින්නෙ?",
+	}
+
+	n := rand.Int() % len(greetings)
 	b.Handle("/start", func(m *tb.Message) {
-		b.Send(m.Sender, "Hi!")
+		b.Send(m.Sender, greetings[n])
 	})
 
 	b.Start()
