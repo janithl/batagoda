@@ -35,9 +35,9 @@ func main() {
 
 	b.Handle(tb.OnText, func(m *tb.Message) {
 		rand.Seed(time.Now().Unix())
-		if strings.Contains(strings.ToLower(m.Text), "බටගොඩ") ||
-			strings.Contains(strings.ToLower(m.Text), "batagoda") {
-			prompt := strings.ReplaceAll(strings.ToLower(m.Text), "batagoda", "")
+		prompt := strings.ToLower(m.Text)
+		if strings.Contains(prompt, "බටගොඩ") || strings.Contains(prompt, "batagoda") {
+			prompt = strings.ReplaceAll(strings.ReplaceAll(prompt, "batagoda", ""), "බටගොඩ", "")
 			b.Send(m.Chat, liz.ReplyTo(prompt))
 		}
 	})
