@@ -3,20 +3,11 @@
 
 package eliza
 
-// Introductions is a list of introduction sentences for ELIZA.
-var Introductions = []string{
-	"මීට කලින් මාව දැකල නැද්ද?",
-	"ඇයි පකෝ?",
-	"තොට ඇම්ම කියල මම පලිද?",
-	"මොකද හුත්තො අනින්නෙ?",
-}
-
 // Goodbyes is a list of goodbye sentences for ELIZA.
 var Goodbyes = []string{
 	"තොගෙ අඳෝනාව අහන් ඉඳල මට බඩ යනව",
 	"මේකට වඩා හොඳයි ඇට වල මවිල් ගනං කරන එක",
 	"ගිහිං වැලක් බලපංකො පව් නොදී",
-	"තොපිගෙ මුල් ලමාවිය ප්‍රශ්න තමයි පෙන්නන්නෙ",
 }
 
 // Psychobabble may be slightly non-deterministic, since map iteration may be out
@@ -242,11 +233,15 @@ var DefaultResponses = []string{
 	"අනේ තව බොරුවක් කියපං​කො",
 	"උඹේ පවුල ගැන අහන්න තමයි මට වෙලා තියෙන්නෙ",
 	"තව බොරුවක් කියප​ං?",
-	"ආ එහෙම​ද",
+	"ආ එහෙම​ද?",
 	"මාරයි​නෙ",
 	"ආ, එහෙම වුනාමවත් තොට තේරෙන්නෙ නැද්​ද?",
 	"එතකොට හරි​ද?",
 	"එහෙම කීවහම උඹට සතුටු​ද?",
+	"මීට කලින් මාව දැකල නැද්ද?",
+	"ඇයි පකෝ?",
+	"තොට ඇම්ම කියල මම පලිද?",
+	"තොපිගෙ මුල් ලමාවිය ප්‍රශ්න තමයි පෙන්නන්නෙ",
 }
 
 // QuitStatements is a list of statements that indicate the user wants to end the conversation

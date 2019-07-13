@@ -10,13 +10,8 @@ import (
 	"strings"
 )
 
-// ElizaHi will return a random introductory sentence for ELIZA.
-func ElizaHi() string {
-	return randChoice(Introductions)
-}
-
-// ElizaHi will return a random goodbye sentence for ELIZA.
-func ElizaBye() string {
+// Bye will return a random goodbye sentence for ELIZA.
+func Bye() string {
 	return randChoice(Goodbyes)
 }
 
@@ -27,7 +22,7 @@ func ReplyTo(statement string) string {
 
 	// Then, we check if this is a quit statement
 	if IsQuitStatement(statement) {
-		return ElizaBye()
+		return Bye()
 	}
 
 	// Next, we try to match the statement to a statement that ELIZA can
