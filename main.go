@@ -23,7 +23,6 @@ var greetings = []string{
 }
 
 func greet() string {
-	rand.Seed(time.Now().Unix())
 	n := rand.Intn(len(greetings))
 	return greetings[n]
 }
@@ -51,10 +50,15 @@ func main() {
 	}
 
 	b.Handle(tb.OnText, func(m *tb.Message) {
-		if strings.Contains(strings.ToLower(m.Text), "batagoda") ||
-			strings.Contains(strings.ToLower(m.Text), "බටගොඩ") {
-			str := liz.ReplyTo(m.Text)
-			b.Send(m.Chat, str)
+		rand.Seed(time.Now().Unix())
+		if strings.Contains(strings.ToLower(m.Text), "බටගොඩ") ||
+			strings.Contains(strings.ToLower(m.Text), "batagoda") {
+			if rand.Intn(2) == 2 {
+				b.Send(m.Chat, greet())
+			} else {
+				prompt := strings.ReplaceAll(strings.ToLower(m.Text), "batagoda", "")
+				b.Send(m.Chat, liz.ReplyTo(prompt))
+			}
 		}
 	})
 
