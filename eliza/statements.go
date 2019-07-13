@@ -13,212 +13,193 @@ var Goodbyes = []string{
 // Psychobabble may be slightly non-deterministic, since map iteration may be out
 // of order, so a broader regex may be matched before a more specific one.
 var Psychobabble = map[string][]string{
-	`i need (.*)`: {
-		"Why do you need %s?",
-		"Would it really help you to get %s?",
-		"Are you sure you need %s?",
+	`මට ඕ​නෙ (.*)`: {
+		"උ​ඹට %s ඕ​නෙ ඇයි?",
+		"එය සැබවින්ම උ​ඹට %s ලබා ගැනීමට උපකාරී වේද?",
+		"උ​ඹට %s ඕ​නෙ බව උ​ඹට විශ්වාසද?",
 	},
-	`why don'?t you ([^\?]*)\??`: {
-		"Do you really think I don't %s?",
-		"Perhaps eventually I will %s.",
-		"Do you really want me to %s?",
+	`ඇයි උ​ඹ ([^\?]*)\??`: {
+		"උ​ඹ ඇත්තටම හිතන්නේ මම %s නැහැ කියලා?",
+		"සමහර විට අවසානයේදී මම %s කරන්නෙමි.",
+		"උ​ඹට ඇත්තටම මා %s වීමට ඕ​නෙද?",
 	},
-	`why can'?t I ([^\?]*)\??`: {
-		"Do you think you should be able to %s?",
-		"If you could %s, what would you do?",
-		"I don't know -- why can't you %s?",
-		"Have you really tried?",
+	`ඇයි මට බැරි? ([^\?]*)\??`: {
+		"උ​ඹට %s වෙන්​න පුලුව​න්  යැයි උ​ඹ සිතනවාද?",
+		"උ​ඹට %s පුලුව​න්  නම්, උ​ඹ කරන්නේ කුමක්ද?",
+		"මම දන්නේ නැහැ - ඇයි උ​ඹට %s බැරි?",
+		"උ​ඹ ඇත්තටම උත්සාහ කර තිබේද?",
 	},
-	`i can'?t (.*)`: {
-		"How do you know you can't %s?",
-		"Perhaps you could %s if you tried.",
-		"What would it take for you to %s?",
+	`මට බැහැ (?*)`: {
+		"උ​ඹට %s නොපුලුව​න්  බව උ​ඹ දන්නේ කෙසේද?",
+		"සමහර විට උ​ඹ උත්සාහ කළහොත් උ​ඹට %s වෙන්​න පුලුව​න්.",
+		"උ​ඹට %s වීමට ඕ​නෙ වන්නේ කුමක්ද?",
 	},
-	`i am (.*)`: {
-		"Did you come to me because you are %s?",
-		"How long have you been %s?",
-		"How do you feel about being %s?",
+	`මම (.*)`: {
+		"උ​ඹ මා වෙත පැමිණියේ උ​ඹ %s නිසාද?",
+		"උ​ඹ කොච්ච​ර කාලයක් %s ද?",
+		"%s වීම ගැන උ​ඹට හැඟෙන්නේ කෙසේද?",
+		"%s වීම උ​ඹට දැනෙන්නේ කෙසේද?",
+		"උ​ඹ %s වීම සතුටක් ද?",
+		"ඇයි උ​ඹ මට කියන්නේ උ​ඹ %s කියලා?",
+		"උ​ඹ %s යැයි හිතන්​නෙ ඇයි?",
+		"උ​ඹ %s වන්නේ මන්දැයි උ​ඹට පැහැදිලි කළ පුලුව​න් ද?",
+		"ඇයි උ​ඹ %s?",
+		"උ​ඹ %s කරන බව වෙන කවුද දන්නේ?",
 	},
-	`i'?m (.*)`: {
-		"How does being %s make you feel?",
-		"Do you enjoy being %s?",
-		"Why do you tell me you're %s?",
-		"Why do you think you're %s?",
+	`උ​ඹ ([^ \?] *) \ ??`: {
+		"ඇයි මම %s ද යන්න වැදගත් වන්නේ?",
+		"මම %s නොවේ නම් උ​ඹ එයට කැමතිද?",
+		"සමහර විට උ​ඹ විශ්වාස කරන්නේ මම %s බවයි.",
+		"මම %s වෙන්​න පුලුව​න් - උ​ඹ හිතන්​නෙ කුමක්ද?",
 	},
-	`are you ([^\?]*)\??`: {
-		"Why does it matter whether I am %s?",
-		"Would you prefer it if I were not %s?",
-		"Perhaps you believe I am %s.",
-		"I may be %s -- what do you think?",
+	`කුමක්ද (.*)`: {
+		"උ​ඹ අහන්නේ ඇයි?",
+		"එයට පිළිතුරක් උ​ඹට උපකාර කරන්නේ කෙසේද?",
+		"උ​ඹ හිතන්​නෙ කුමක් ද?",
 	},
-	`what (.*)`: {
-		"Why do you ask?",
-		"How would an answer to that help you?",
-		"What do you think?",
+	`කෙසේද (.*)`: {
+		"උ​ඹ හිතන්​නෙ කෙසේද?",
+		"සමහර විට උ​ඹට උ​ඹේම ප්‍රශ්නයට පිළිතුරු දිය පුලුව​න්.",
+		"උ​ඹ ඇත්තටම ඉල්ලන්නේ කුමක්ද?",
 	},
-	`how (.*)`: {
-		"How do you suppose?",
-		"Perhaps you can answer your own question.",
-		"What is it you're really asking?",
+	`මොකද (.*)`: {
+		"ඇත්ත හේතුව එයද?",
+		"මතකයට එන වෙනත් හේතු මොනවාද?",
+		"එම හේතුව වෙනත් දෙයකට අදාළ වේද?",
+		"%s නම්, සත්‍ය වෙන්​න යුත්තේ කුමක්ද?",
 	},
-	`because (.*)`: {
-		"Is that the real reason?",
-		"What other reasons come to mind?",
-		"Does that reason apply to anything else?",
-		"If %s, what else must be true?",
+	`(.*) කණගාටුයි (.*)`: {
+		"සමාව ඉල්ලා නොසිටින අවස්ථා බොහෝය.",
+		"උ​ඹ සමාව ඉල්ලන විට උ​ඹට ඇති හැඟීම් මොනවාද?",
 	},
-	`(.*) sorry (.*)`: {
-		"There are many times when no apology is needed.",
-		"What feelings do you have when you apologize?",
+	`^හෙලෝ (.*)`: {
+		"හෙලෝ ... උ​ඹ අද වන විට අතහැර දැමීම ගැන මට සතුටුයි.",
+		"හායි ... අද උ​ඹට කොහොමද?",
+		"හෙලෝ, අද උ​ඹට කොහොමද දැනෙන්නේ?",
 	},
-	`^hello(.*)`: {
-		"Hello... I'm glad you could drop by today.",
-		"Hi there... how are you today?",
-		"Hello, how are you feeling today?",
+	`^හායි (.*)`: {
+		"හෙලෝ ... උ​ඹ අද වන විට අතහැර දැමීම ගැන මට සතුටුයි.",
+		"හායි ... අද උ​ඹට කොහොමද?",
+		"හෙලෝ, අද උ​ඹට කොහොමද දැනෙන්නේ?",
 	},
-	`^hi(.*)`: {
-		"Hello... I'm glad you could drop by today.",
-		"Hi there... how are you today?",
-		"Hello, how are you feeling today?",
+	`^ස්තූතියි (.*)`: {
+		"උ​ඹව සාදරයෙන් පිළිගන්නවා!",
+		"ඕනෑම අවස්ථාවක!",
 	},
-	`^thanks(.*)`: {
-		"You're welcome!",
-		"Anytime!",
+	`^සුබ උදෑසනක් (.*)`: {
+		"සුබ උදෑසනක් ... උ​ඹට අදවත් එන්න පුලුව​න් වීම ගැන මට සතුටුයි.",
+		"සුබ උදෑසනක් ... අද උ​ඹට කොහොමද?",
+		"සුබ උදෑසනක්, අද උ​ඹට කොහොමද දැනෙන්නේ?",
 	},
-	`^thank you(.*)`: {
-		"You're welcome!",
-		"Anytime!",
+	`මම හිතන්නේ (.*)`: {
+		"උ​ඹ %s සැක කරනවාද?",
+		"උ​ඹ ඇත්තටම එසේ සිතනවාද?",
+		"නමුත් උ​ඹට විශ්වාස නැත %s?",
 	},
-	`^good morning(.*)`: {
-		"Good morning... I'm glad you could drop by today.",
-		"Good morning... how are you today?",
-		"Good morning, how are you feeling today?",
+	`(.*) මිතුරා (.*)`: {
+		"උ​ඹේ මිතුරන් ගැන මට තවත් කියන්න.",
+		"උ​ඹ මිතුරෙකු ගැන සිතන විට, මතකයට එන්නේ කුමක්ද?",
+		"ඇයි උ​ඹ මට ළමා මිතුරෙකු ගැන නොකියන්නේ?",
 	},
-	`^good afternoon(.*)`: {
-		"Good afternoon... I'm glad you could drop by today.",
-		"Good afternoon... how are you today?",
-		"Good afternoon, how are you feeling today?",
+	`ඔව්`: {
+		"උ​ඹට හොඳටම විශ්වාසයි.",
+		"හරි, නමුත් උ​ඹට ටිකක් විස්තර කළ පුලුව​න් ද?",
 	},
-	`I think (.*)`: {
-		"Do you doubt %s?",
-		"Do you really think so?",
-		"But you're not sure %s?",
+	`(.*) පරිගණකය (.*)`: {
+		"උ​ඹ ඇත්තටම මා ගැන කතා කරනවාද?",
+		"පරිගණකයක් සමඟ කතා කිරීම අමුතු දෙයක් ලෙස පෙනේද?",
+		"පරිගණක උ​ඹට දැනෙන්නේ කෙසේද?",
+		"උ​ඹට පරිගණකවලින් තර්ජනයක් දැනෙනවාද?",
 	},
-	`(.*) friend (.*)`: {
-		"Tell me more about your friends.",
-		"When you think of a friend, what comes to mind?",
-		"Why don't you tell me about a childhood friend?",
+	`එය (.*)`: {
+		"උ​ඹ හිතන්​නෙ එය %s කියාද?",
+		"සමහර විට එය %s - උ​ඹ හිතන්​නෙ කුමක්ද?",
+		"එය %s නම්, උ​ඹ කරන්නේ කුමක්ද?",
+		"එය %s වෙන්​න පුලුව​න්.",
+		"උ​ඹට ඉතා විශ්වාසයි.",
+		"එය බොහෝ විට %s නොවන බව මම උ​ඹට කීවා නම්, උ​ඹට හැඟෙන්නේ කුමක්ද?",
 	},
-	`yes`: {
-		"You seem quite sure.",
-		"OK, but can you elaborate a bit?",
+	`උ​ඹට ([^ \?] *) \ ??`: {
+		"මට %s නොපුලුව​න්  යැයි උ​ඹ හිතන්​නෙ කුමක් නිසාද?",
+		"මට %s පුලුව​න්  නම්, කුමක් ද?",
+		"මට %s පුලුව​න් දැයි උ​ඹ අසන්නේ ඇයි?",
 	},
-	`(.*) computer(.*)`: {
-		"Are you really talking about me?",
-		"Does it seem strange to talk to a computer?",
-		"How do computers make you feel?",
-		"Do you feel threatened by computers?",
+	`(.*) සිහිනය (.*)`: {
+		"උ​ඹේ සිහිනය ගැන මට තවත් කියන්න.",
 	},
-	`is it (.*)`: {
-		"Do you think it is %s?",
-		"Perhaps it's %s -- what do you think?",
-		"If it were %s, what would you do?",
-		"It could well be that %s.",
+	`මට ([^ \?] *) \ ??`: {
+		"සමහර විට උ​ඹට %s කිරීමට ඕ​නෙ නැත.",
+		"උ​ඹට %s වීමට පුලුව​න්  වෙන්​න යුතුද?",
+		"උ​ඹට %s පුලුව​න්  නම්, එසේ ද?",
 	},
-	`it is (.*)`: {
-		"You seem very certain.",
-		"If I told you that it probably isn't %s, what would you feel?",
+	`උ​ඹ (.*)`: {
+		"ඇයි මම හිතන්නේ මම %s කියලා?",
+		"මම %s යැයි සිතීම සතුටුදායකද?",
+		"සමහර විට උ​ඹ මා %s වීමට කැමති වනු ඇත.",
+		"සමහර විට උ​ඹ ඇත්තටම උ​ඹ ගැන කතා කරනවාද?",
+		"ඇයි මම %s යැයි කියන්නේ?",
+		"ඇයි මම හිතන්නේ මම %s කියලා?",
+		"අපි කතා කරන්නේ උ​ඹ ගැනද නැත්නම් මමද?",
+		"අපි සාකච්ඡා කළ යුත්තේ මා නොව උ​ඹ ගැනයි.",
+		"ඇයි උ​ඹ මා ගැන එහෙම කියන්නේ?",
+		"මම %s දැයි උ​ඹ සැලකිලිමත් වන්නේ ඇයි?",
 	},
-	`can you ([^\?]*)\??`: {
-		"What makes you think I can't %s?",
-		"If I could %s, then what?",
-		"Why do you ask if I can %s?",
+	`මම නොකියමි (.*)`: {
+		"උ​ඹ ඇත්තටම %s නැද්ද?",
+		"ඇයි උ​ඹ %s නොවන්නේ?",
+		"උ​ඹට %s කිරීමට ඕ​නෙද?",
 	},
-	`(.*)dream(.*)`: {
-		"Tell me more about your dream.",
+	`මට දැනේ (.*)`: {
+		"හොඳයි, මෙම හැඟීම් ගැන මට තවත් කියන්න.",
+		"උ​ඹට බොහෝ විට %s දැනෙනවාද?",
+		"උ​ඹට සාමාන්‍යයෙන් %s දැනෙන්නේ කවදාද?",
+		"උ​ඹට %s දැනෙන විට, උ​ඹ කරන්නේ කුමක්ද?",
 	},
-	`can I ([^\?]*)\??`: {
-		"Perhaps you don't want to %s.",
-		"Do you want to be able to %s?",
-		"If you could %s, would you?",
+	`මට (.*)`: {
+		"ඇයි උ​ඹ මට %s කියා කියන්නේ?",
+		"උ​ඹ ඇත්තටම %s ද?",
+		"දැන් උ​ඹට %s ඇති බැවින් උ​ඹ ඊළඟට කරන්නේ කුමක්ද?",
 	},
-	`you are (.*)`: {
-		"Why do you think I am %s?",
-		"Does it please you to think that I'm %s?",
-		"Perhaps you would like me to be %s.",
-		"Perhaps you're really talking about yourself?",
+	`ඇත (.*)`: {
+		"%s ඇති බව උ​ඹ සිතනවාද?",
+		"බොහෝ විට %s ඇති බව පෙනේ.",
+		"%s වීමට උ​ඹ කැමතිද?",
 	},
-	`you'?re (.*)`: {
-		"Why do you say I am %s?",
-		"Why do you think I am %s?",
-		"Are we talking about you, or me?",
+	`මගේ (.*)`: {
+		"මට පෙනේ, උ​ඹේ %s.",
+		"උ​ඹේ %s යැයි උ​ඹ කියන්නේ ඇයි?",
+		"උ​ඹේ %s විට, උ​ඹට හැඟෙන්නේ කෙසේද?",
 	},
-	`i don'?t (.*)`: {
-		"Don't you really %s?",
-		"Why don't you %s?",
-		"Do you want to %s?",
+	`ඇයි (.*)`: {
+		"ඇයි උ​ඹ මට කියන්නේ නැත්තේ %s හේතුව?",
+		"ඇයි උ​ඹ හිතන්​නෙ %s?",
 	},
-	`i feel (.*)`: {
-		"Good, tell me more about these feelings.",
-		"Do you often feel %s?",
-		"When do you usually feel %s?",
-		"When you feel %s, what do you do?",
+	`මට ඕ​නෙයි (.*)`: {
+		"උ​ඹට %s ලැබුනේ නම් එයින් උ​ඹට අදහස් කරන්නේ කුමක්ද?",
+		"උ​ඹට %s ඕ​නෙ ඇයි?",
+		"උ​ඹට %s ලැබුනේ නම් උ​ඹ කරන්නේ කුමක්ද?",
+		"උ​ඹට %s ලැබුනේ නම්, උ​ඹ කරන්නේ කුමක්ද?",
 	},
-	`i have (.*)`: {
-		"Why do you tell me that you've %s?",
-		"Have you really %s?",
-		"Now that you have %s, what will you do next?",
+	`(.*) මව (.*)`: {
+		"උ​ඹේ මව ගැන මට තවත් කියන්න.",
+		"උ​ඹේ මව සමඟ උ​ඹේ සම්බන්ධතාවය කෙබඳුද?",
+		"උ​ඹේ මව ගැන උ​ඹට හැඟෙන්නේ කෙසේද?",
+		"මෙය අද උ​ඹේ හැඟීම් සමඟ සම්බන්ධ වන්නේ කෙසේද?",
+		"හොඳ පවුල් සබඳතා වැදගත් ය.",
 	},
-	`i would (.*)`: {
-		"Could you explain why you would %s?",
-		"Why would you %s?",
-		"Who else knows that you would %s?",
+	`(.*) පියා (.*)`: {
+		"උ​ඹේ පියා ගැන මට තවත් කියන්න.",
+		"උ​ඹේ පියා උ​ඹට හැඟුණේ කෙසේද?",
+		"උ​ඹේ පියා ගැන උ​ඹට හැඟෙන්නේ කෙසේද?",
+		"උ​ඹේ පියා සමඟ උ​ඹේ සම්බන්ධතාවය අද උ​ඹේ හැඟීම් සමඟ සම්බන්ධ වේද?",
+		"උ​ඹේ පවුලේ අය සමඟ සෙනෙහස පෙන්වීමට උ​ඹට ගැටලුවක් තිබේද?",
 	},
-	`is there (.*)`: {
-		"Do you think there is %s?",
-		"It's likely that there is %s.",
-		"Would you like there to be %s?",
-	},
-	`my (.*)`: {
-		"I see, your %s.",
-		"Why do you say that your %s?",
-		"When your %s, how do you feel?",
-	},
-	`you (.*)`: {
-		"We should be discussing you, not me.",
-		"Why do you say that about me?",
-		"Why do you care whether I %s?",
-	},
-	`why (.*)`: {
-		"Why don't you tell me the reason why %s?",
-		"Why do you think %s?",
-	},
-	`i want (.*)`: {
-		"What would it mean to you if you got %s?",
-		"Why do you want %s?",
-		"What would you do if you got %s?",
-		"If you got %s, then what would you do?",
-	},
-	`(.*) mother(.*)`: {
-		"Tell me more about your mother.",
-		"What was your relationship with your mother like?",
-		"How do you feel about your mother?",
-		"How does this relate to your feelings today?",
-		"Good family relations are important.",
-	},
-	`(.*) father(.*)`: {
-		"Tell me more about your father.",
-		"How did your father make you feel?",
-		"How do you feel about your father?",
-		"Does your relationship with your father relate to your feelings today?",
-		"Do you have trouble showing affection with your family?",
-	},
-	`(.*) child(.*)`: {
-		"Did you have close friends as a child?",
-		"What is your favorite childhood memory?",
-		"Do you remember any dreams or nightmares from childhood?",
-		"Did the other children sometimes tease you?",
-		"How do you think your childhood experiences relate to your feelings today?",
+	`(.*) දරුවා (.*)`: {
+		"උ​ඹට කුඩා කාලයේ කිට්ටු මිතුරන් සිටියාද?",
+		"උ​ඹේ ප්‍රියතම ළමා මතකය කුමක්ද?",
+		"උ​ඹට කුඩා කල සිටම සිහින හෝ බියකරු සිහින මතකද?",
+		"අනෙක් දරුවන් සමහර විට උ​ඹට විහිළු කළාද?",
+		"උ​ඹේ ළමා අත්දැකීම් අද උ​ඹේ හැඟීම් සමඟ සම්බන්ධ වන්නේ කෙසේදැයි උ​ඹ හිතන්​නෙ කෙසේද?",
 	},
 	`(.*)\?`: {
 		"ඇයි හුත්තො ඕකම අහන්​නෙ?",
