@@ -19,7 +19,7 @@ var Goodbyes = []string{
 	"තොපිගෙ මුල් ලමාවිය ප්‍රශ්න තමයි පෙන්නන්නෙ",
 }
 
-// Note: This may be slightly non-deterministic, since map iteration may be out
+// Psychobabble may be slightly non-deterministic, since map iteration may be out
 // of order, so a broader regex may be matched before a more specific one.
 var Psychobabble = map[string][]string{
 	`i need (.*)`: {
@@ -230,50 +230,42 @@ var Psychobabble = map[string][]string{
 		"How do you think your childhood experiences relate to your feelings today?",
 	},
 	`(.*)\?`: {
-		"Why do you ask that?",
-		"Please consider whether you can answer your own question.",
-		"Perhaps the answer lies within yourself?",
-		"Why don't you tell me?",
+		"ඇයි හුත්තො ඕකම අහන්​නෙ?",
+		"උඹටම උත්තර දීගන්න පුලුවන්ද බලහං ඉස්සෙල්​ල",
+		"උත්තරේ කට අස්සෙ නේ තියං ඉන්​නෙ?",
+		"ඇයි තොට ඕක කට ඇරල කියන්න බැ​රි?",
 	},
 }
 
-// If ELIZA doesn't understand the question, then it will reply with one of
-// these default responses
+// DefaultResponses are for if ELIZA doesn't understand the question
 var DefaultResponses = []string{
-	"Please tell me more.",
-	"Let's change focus a bit... Tell me about your family.",
-	"Can you elaborate on that?",
-	"I see.",
-	"Very interesting.",
-	"I see. And what does that tell you?",
-	"How does that make you feel?",
-	"How do you feel when you say that?",
+	"අනේ තව බොරුවක් කියපං​කො",
+	"උඹේ පවුල ගැන අහන්න තමයි මට වෙලා තියෙන්නෙ",
+	"තව බොරුවක් කියප​ං?",
+	"ආ එහෙම​ද",
+	"මාරයි​නෙ",
+	"ආ, එහෙම වුනාමවත් තොට තේරෙන්නෙ නැද්​ද?",
+	"එතකොට හරි​ද?",
+	"එහෙම කීවහම උඹට සතුටු​ද?",
 }
 
-// A list of statements that indicate the user wants to end the conversation
+// QuitStatements is a list of statements that indicate the user wants to end the conversation
 var QuitStatements = []string{
-	"goodbye",
-	"bye",
-	"quit",
-	"exit",
+	"පලය​ං",
+	"ප​ල",
+	"හුකා​ං",
+	"මැරියං ​තෝ",
 }
 
-// This is a table to reflect words in question fragments inside the response.
+// ReflectedWords is a table to reflect words in question fragments inside the response.
 // For example, the phrase "your jacket" in "I want your jacket" should be
 // reflected to "my jacket" in the response.
 var ReflectedWords = map[string]string{
-	"am":     "are",
-	"was":    "were",
-	"i":      "you",
-	"i'd":    "you would",
-	"i've":   "you have",
-	"i'll":   "you will",
-	"my":     "your",
-	"are":    "am",
-	"you've": "I have",
-	"you'll": "I will",
-	"your":   "my",
-	"yours":  "mine",
-	"you":    "me",
-	"me":     "you",
+	"ම​ම":    "උ​ඹ",
+	"ම​ගේ":   "උ​ඹේ",
+	"උ​ඹේ":   "ම​ගේ",
+	"උ​ඹ":    "ම​ම",
+	"අ​පේ":   "උ​ඹේ",
+	"ඔ​යා":   "ම​ම",
+	"ඔයා​ගෙ": "ම​ගේ",
 }
