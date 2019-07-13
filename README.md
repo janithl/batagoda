@@ -4,6 +4,8 @@ A profanity-laden Telegram bot. Code copied wholesale from [goeliza](https://git
 and translated to Sinhala via Google Translate, with none of the change in sentence structures
 etc. to make it sound less awkward in Sinhala.
 
+Uses the amazing [Telebot](https://github.com/tucnak/telebot) framework for the bot integration stuff.
+
 ## Setting Up
 
 - Clone repo
