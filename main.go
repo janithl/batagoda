@@ -17,7 +17,7 @@ func main() {
 		port            = os.Getenv("PORT")
 		publicURL       = os.Getenv("PUBLIC_URL")
 		token           = os.Getenv("TOKEN")
-		useExperimental = true
+		useExperimental = false
 	)
 
 	webhook := &tb.Webhook{
