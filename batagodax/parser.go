@@ -16,8 +16,7 @@ func Respond(prompt string) string {
 		}
 
 		// Try to find matches for the trigger pattern
-		matches := re.FindStringSubmatch(prompt)
-		if len(matches) > 0 {
+		if re.MatchString(prompt) {
 			return randChoice(rule.Responses)
 		}
 	}
