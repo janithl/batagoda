@@ -1,16 +1,40 @@
 package batagodax
 
 import (
-	"regexp"
+	"fmt"
 	"testing"
 )
 
-// TestCompile tests the regex compilation
-func TestCompile(t *testing.T) {
-	for _, rule := range Rules {
-		_, err := regexp.Compile(rule.Trigger)
-		if err != nil {
-			t.Errorf("Cannot compile %s", rule.Trigger)
-		}
+// testcase is a struct to hold testcases
+type testcase struct {
+	Prompt string
+	Want   int
+}
+
+// TestMatch tests if prompts get the expected bot responses
+func TestMatch(t *testing.T) {
+	testCases := []testcase{
+		{"අපි හුකමු​කො", 0},
+		{"තෝ නම් කැරියෙක්", 1},
+		{"මම ඔයාට ආදරෙයි", 2},
+	}
+
+	for _, tc := range testCases {
+		t.Run(fmt.Sprintf("Prompt: %s", tc.Prompt), func(t *testing.T) {
+			response := Respond(tc.Prompt)
+			got := -1
+
+			for i, rule := range Rules {
+				for _, resp := range rule.Responses {
+					if response == resp {
+						got = i
+					}
+				}
+			}
+
+			if got != tc.Want {
+				t.Errorf("got %d; want %d", got, tc.Want)
+			}
+		})
 	}
 }

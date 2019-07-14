@@ -2,22 +2,17 @@ package batagodax
 
 import (
 	"math/rand"
-	"regexp"
+	"strings"
 )
 
 // Respond responds to a prompt
 func Respond(prompt string) string {
 	// Iterates through Rules, tries to match to prompt
 	for _, rule := range Rules {
-		re, err := regexp.Compile(rule.Trigger)
-		if err != nil {
-			// If there's an error, return a fallback
-			return randChoice(Fallbacks)
-		}
-
-		// Try to find matches for the trigger pattern
-		if re.MatchString(prompt) {
-			return randChoice(rule.Responses)
+		for _, trigger := range rule.Triggers {
+			if strings.Contains(prompt, trigger) {
+				return randChoice(rule.Responses)
+			}
 		}
 	}
 

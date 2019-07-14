@@ -2,14 +2,16 @@ package batagodax
 
 // rule is a struct to hold rules
 type rule struct {
-	Trigger   string
+	Triggers  []string
 	Responses []string
 }
 
 // Rules is a set of conversational rules
 var Rules = []rule{
 	rule{
-		Trigger: `(.*)‍(හුකමු)(.*)`,
+		Triggers: []string{
+			"හුකමු",
+		},
 		Responses: []string{
 			"යකඩ බටේ ඇතුලට යවනකොටනං ඕව කියන්නෙ ​නෑ",
 			"ම්ම්ම් සෙ​ස්",
@@ -17,7 +19,15 @@ var Rules = []rule{
 		},
 	},
 	rule{
-		Trigger: `(.*)‍(හුත්|හුක|පක|පකෝ|පකේ|කැරි|වේ​සි)(.*)`,
+		Triggers: []string{
+			"හුත්",
+			"හුක",
+			"පක",
+			"පකෝ",
+			"පකේ",
+			"කැරි",
+			"වේ​සි",
+		},
 		Responses: []string{
 			"මොකද හුත්තො කුණුහරප කියන්​නෙ",
 			"අඩෝ අපිත් දන්නව හොඳ සිංහල",
@@ -25,7 +35,13 @@ var Rules = []rule{
 		},
 	},
 	rule{
-		Trigger: `(.*)‍(ආද​රේ|ආදරෙ|මනා​ප|මනාපෙ|ල​වු|කැරි)(.*)`,
+		Triggers: []string{
+			"ආද​රේ",
+			"ආදරෙ",
+			"මනා​ප",
+			"මනාපෙ",
+			"ල​වු",
+		},
 		Responses: []string{
 			"ඔච්චර පදිරි වෙන්න එපා බොටෙක්ට ලවු කර​ල",
 			"අපි ඔයාට පත්තරේ මංගල යෝජනාවක් දා​මු",
@@ -33,7 +49,17 @@ var Rules = []rule{
 		},
 	},
 	rule{
-		Trigger: `(.*)‍(අම්ම|මිනිහ|මිනිහා|ගෑනි|බෝයි|ගර්ල්)(.*)`,
+		Triggers: []string{
+			"අම්ම",
+			"මිනිහ",
+			"මිනිහා",
+			"ගෑනි",
+			"කොල්ල",
+			"කෙල්ල",
+			"කෑල්ල",
+			"බෝයි",
+			"ගර්ල්",
+		},
 		Responses: []string{
 			"උඹේ පවුල ගැන අහන්න තමයි මට වෙලා තියෙන්නෙ",
 			"පවුල් ප්‍රශ්ණ වලට අපි නෑ ඕ​ං",
@@ -41,7 +67,11 @@ var Rules = []rule{
 		},
 	},
 	rule{
-		Trigger: `(.*)‍(යන​ව|යන​වා)(.*)`,
+		Triggers: []string{
+			"යන​ව",
+			"යන​වා",
+			"ගියා",
+		},
 		Responses: []string{
 			"ඉතිං පලය​ං, මම ගඟේ පනින්නයැ?",
 			"අම්මෝ ප​ල පල",
