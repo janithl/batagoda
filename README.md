@@ -18,11 +18,11 @@ Kaveen Rodrigo at [YAMU](https://www.yamu.lk) circa 2016/17.
 
 ## Engines
 
-- Eliza: Code copied wholesale from [goeliza](https://github.com/kennysong/goeliza)
+- **Eliza:** Code copied wholesale from [goeliza](https://github.com/kennysong/goeliza)
   and translated to Sinhala via Google Translate, with none of the change in sentence
   structures etc. to make it sound less awkward in Sinhala.
 
-- BatagodaX: Written from scratch. Less sophisticated than Eliza but seems to work okay.
+- **BatagodaX:** Written from scratch. Less sophisticated than Eliza but seems to work okay.
   Has better tests!
 
 ## License
