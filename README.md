@@ -1,8 +1,6 @@
 # Batagoda
 
-A profanity-laden Telegram bot. Code copied wholesale from [goeliza](https://github.com/kennysong/goeliza)
-and translated to Sinhala via Google Translate, with none of the change in sentence structures
-etc. to make it sound less awkward in Sinhala.
+A profanity-laden Telegram bot with two distinct engines.
 
 Uses the amazing [Telebot](https://github.com/tucnak/telebot) framework for the bot integration stuff.
 
@@ -17,6 +15,15 @@ Uses the amazing [Telebot](https://github.com/tucnak/telebot) framework for the 
 
 The name is a throwback to the original Slack bot _Batagoda_ (may he RIP), written by Viren Dias and
 Kaveen Rodrigo at [YAMU](https://www.yamu.lk) circa 2016/17.
+
+## Engines
+
+- Eliza: Code copied wholesale from [goeliza](https://github.com/kennysong/goeliza)
+  and translated to Sinhala via Google Translate, with none of the change in sentence
+  structures etc. to make it sound less awkward in Sinhala.
+
+- BatagodaX: Written from scratch. Less sophisticated than Eliza but seems to work okay.
+  Has better tests!
 
 ## License
 
