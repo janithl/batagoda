@@ -47,12 +47,10 @@ func main() {
 		if strings.Contains(prompt, "බටගොඩ") || strings.Contains(prompt, "batagoda") {
 			prompt = strings.TrimSpace(
 				strings.ReplaceAll(
-				strings.ReplaceAll(
-				strings.ReplaceAll(
-					prompt,
-				"@batagodabot", ""),
-				"batagoda", ""),
-				"බටගොඩ", "")
+					strings.ReplaceAll(
+						strings.ReplaceAll(prompt, "@batagodabot", ""),
+						"batagoda", ""),
+					"බටගොඩ", ""),
 			)
 			response := ""
 			if len(appID) > 0 && strings.Contains(prompt, "?") {
