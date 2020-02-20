@@ -45,8 +45,15 @@ func main() {
 		rand.Seed(time.Now().Unix())
 		prompt := strings.ToLower(m.Text)
 		if strings.Contains(prompt, "බටගොඩ") || strings.Contains(prompt, "batagoda") {
-			prompt = strings.TrimSpace(strings.ReplaceAll(
-				strings.ReplaceAll(prompt, "batagoda", ""), "බටගොඩ", ""))
+			prompt = strings.TrimSpace(
+				strings.ReplaceAll(
+				strings.ReplaceAll(
+				strings.ReplaceAll(
+					prompt,
+				"@batagodabot", ""),
+				"batagoda", ""),
+				"බටගොඩ", "")
+			)
 			response := ""
 			if len(appID) > 0 && strings.Contains(prompt, "?") {
 				var err error
