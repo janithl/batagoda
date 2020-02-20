@@ -90,7 +90,7 @@ func askWolfram(appID string, question string) (string, error) {
 	endpoint.RawQuery = query.Encode()
 
 	resp, err := http.Get(endpoint.String())
-	if err != nil {
+	if err != nil || resp.StatusCode != 200 {
 		return "", errors.New("can't answer that, boss")
 	}
 	defer resp.Body.Close()
