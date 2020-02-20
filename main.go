@@ -1,8 +1,13 @@
 package main
 
 import (
+	"errors"
+	"fmt"
+	"io/ioutil"
 	"log"
 	"math/rand"
+	"net/http"
+	"net/url"
 	"os"
 	"strings"
 	"time"
@@ -17,6 +22,7 @@ func main() {
 		port            = os.Getenv("PORT")
 		publicURL       = os.Getenv("PUBLIC_URL")
 		token           = os.Getenv("TOKEN")
+		appID           = os.Getenv("WOLFRAM_APPID")
 		useExperimental = false
 	)
 
@@ -42,7 +48,13 @@ func main() {
 			prompt = strings.TrimSpace(strings.ReplaceAll(
 				strings.ReplaceAll(prompt, "batagoda", ""), "බටගොඩ", ""))
 			response := ""
-			if useExperimental {
+			if len(appID) > 0 && strings.Contains(prompt, "?") {
+				var err error
+				response, err = askWolfram(appID, prompt)
+				if err != nil {
+					response = err.Error()
+				}
+			} else if useExperimental {
 				response = batz.Respond(prompt)
 			} else {
 				response = liz.ReplyTo(prompt)
@@ -63,4 +75,30 @@ func main() {
 	})
 
 	b.Start()
+}
+
+func askWolfram(appID string, question string) (string, error) {
+	endpoint := url.URL{
+		Scheme: "https",
+		Host:   "api.wolframalpha.com",
+		Path:   "v1/result",
+	}
+	query := endpoint.Query()
+	query.Set("appid", appID)
+	query.Set("units", "metric")
+	query.Set("i", question)
+	endpoint.RawQuery = query.Encode()
+
+	resp, err := http.Get(endpoint.String())
+	if err != nil {
+		return "", errors.New("can't answer that, boss")
+	}
+	defer resp.Body.Close()
+
+	body, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		return "", errors.New("can't answer that, boss")
+	}
+
+	return fmt.Sprintf("%s", body), nil
 }
