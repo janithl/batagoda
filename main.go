@@ -96,13 +96,13 @@ func askWolfram(appID string, question string) (string, error) {
 
 	resp, err := http.Get(endpoint.String())
 	if err != nil || resp.StatusCode != 200 {
-		return "", errors.New("can't answer that, boss")
+		return "", errors.New("නොදනි​මි 🙃")
 	}
 	defer resp.Body.Close()
 
 	body, err := ioutil.ReadAll(resp.Body)
 	if err != nil {
-		return "", errors.New("can't answer that, boss")
+		return "", errors.New("ඒකනං දන්නෑ බං 😛")
 	}
 
 	return fmt.Sprintf("%s", body), nil
