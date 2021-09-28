@@ -23,7 +23,7 @@ func main() {
 		publicURL       = os.Getenv("PUBLIC_URL")
 		token           = os.Getenv("TOKEN")
 		appID           = os.Getenv("WOLFRAM_APPID")
-		useExperimental = false
+		useExperimental = true
 	)
 
 	webhook := &tb.Webhook{
